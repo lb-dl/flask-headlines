@@ -6,10 +6,18 @@
 </head>
 <body>
     <h1>Headlines</h1>
-    <form>
-    <input type="text" name="publication" placeholder="search" />
-    <input type="submit" value="Submit" />
-    </form>
+    <h2>Current weather</h2>
+        <form>
+            <input type="text" name="city" placeholder="weather search">
+            <input type="submit" value="Submit">
+        </form>
+        <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+        <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
+    <h2>Headlines</h2>
+        <form>
+            <input type="text" name="publication" placeholder="search" />
+            <input type="submit" value="Submit" />
+        </form>
 
     {% for article in articles %}
         <b><a href="{{article.link}}">{{article.title}}</a></b><br />
