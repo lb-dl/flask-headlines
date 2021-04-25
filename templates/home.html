@@ -13,6 +13,20 @@
         </form>
         <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
         <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
+
+    <h2>Currency</h2>
+        <form>
+            to: <select name="currency_to">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="BTC">BTC</option>
+                <option value="RUR">RUR</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+
+        1 {{currency_from}} = {{currency_to}} {{rate}}
+
     <h2>Headlines</h2>
         <form>
             <input type="text" name="publication" placeholder="search" />
