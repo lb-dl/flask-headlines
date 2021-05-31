@@ -1,12 +1,16 @@
+from flask import Blueprint
+from . import db
 import configparser
 import datetime
 import feedparser
 import requests
 
-from flask import Flask, make_response, render_template, request
+
+from flask import make_response, render_template, request
+
+main = Blueprint('main', __name__)
 
 
-app = Flask(__name__)
 
 
 RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
@@ -23,7 +27,7 @@ DEFAULTS = {'publication': 'bbc',
 WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={}"
 CURRENCY_URL = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5"
 
-@app.route('/')
+@main.route('/')
 def home():
     # get customized headlines, based on user input or default
     publication = get_value_with_fallback("publication")
@@ -53,7 +57,6 @@ def get_value_with_fallback(key):
     return DEFAULTS[key]
 
 
-
 def get_news(query):
     if not query or query.lower() not in RSS_FEEDS:
         publication = DEFAULTS["publication"]
@@ -70,7 +73,7 @@ def get_api_key():
 
 
 def get_weather(query):
-    api_key = get_api_key()
+    api_key = api
     url_api = WEATHER_URL.format(query, api_key)
     data = requests.get(url_api)
     parsed = data.json()
@@ -94,6 +97,6 @@ def get_rate(to):
             return f'{buy}/{sell}'
 
 
-
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')

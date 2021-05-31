@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Headlines</title>
-    <style>
-        html {
-            font-family: "Helvetica";
-            background: white;
-        }
-        body {
-            background: lightgrey;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        #header {
-            padding-top: 5;
-            background: lightsteelblue;
-        }
-        #inner-header {
-            padding-left: 10px;
-        }
-        #main {
-            padding-left: 10px;
-        }
-        input[type="text"], select {
-            color: grey;
-            border: 1px solid lightsteelblue;
-            height: 30px;
-            line-height:15px;
-            margin: 2px 6px 16px 0px;
-        }
-        input[type="submit"] {
-            padding: 5px 10px 5px 10px;
-            color: black;
-            background: lightsteelblue;
-            border: none;
-            box-shadow: 1px 1px 1px #4C6E91;
-        }
-        input[type="submit"]:hover{
-            background: steelblue;
-        }
-    </style>
-</head>
+{% extends "base.html" %}
+
+{% block content %}
 <body>
-    <div id="header">
-        <div id="inner-header">
-            <h1>Headlines</h1>
-            <p>Headlines. Currency. Weather.</p>
-        </div>
-        <hr />
-    </div>
+
     <div id="main">
         <h2>Current weather</h2>
             <form>
@@ -86,4 +39,4 @@
         {% endfor %}
     </div>
 </body>
-</html>
+{% endblock %}
