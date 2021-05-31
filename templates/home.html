@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Headlines</title>
-</head>
+{% extends "base.html" %}
+
+{% block content %}
 <body>
-    <h1>Headlines</h1>
-    <h2>Current weather</h2>
-        <form>
-            <input type="text" name="city" placeholder="weather search">
-            <input type="submit" value="Submit">
-        </form>
-        <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
-        <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
 
-    <h2>Currency</h2>
-        <form>
-            to: <select name="currency_to">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="BTC">BTC</option>
-                <option value="RUR">RUR</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
+    <div id="main">
+        <h2>Current weather</h2>
+            <form>
+                <input type="text" name="city" placeholder="weather search">
+                <input type="submit" value="Submit">
+            </form>
+            <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+            <p>{{weather.description}} |{{weather.temperature}}&#8451;</p>
 
-        1 {{currency_from}} = {{currency_to}} {{rate}}
+        <h2>Currency</h2>
+            <form>
+                to: <select name="currency_to">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="BTC">BTC</option>
+                    <option value="RUR">RUR</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
 
-    <h2>Headlines</h2>
-        <form>
-            <input type="text" name="publication" placeholder="search" />
-            <input type="submit" value="Submit" />
-        </form>
+            1 {{currency_from}} = {{currency_to}} {{rate}}
 
-    {% for article in articles %}
-        <b><a href="{{article.link}}">{{article.title}}</a></b><br />
-        <i>{{article.published}}</i><br />
-        <p>{{article.summary}}</p>
-        <hr />
-    {% endfor %}
+        <h2>Headlines</h2>
+            <form>
+                <input type="text" name="publication" placeholder="search" />
+                <input type="submit" value="Submit" />
+            </form>
+
+        {% for article in articles %}
+            <b><a href="{{article.link}}">{{article.title}}</a></b><br />
+            <i>{{article.published}}</i><br />
+            <p>{{article.summary}}</p>
+            <hr />
+        {% endfor %}
+    </div>
 </body>
-</html>
+{% endblock %}

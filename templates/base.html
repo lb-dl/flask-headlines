@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <title>Headlines</title>
+</head>
+{% block bodytag %}
+<body>
+{% endblock %}
+    {% block navbar %}
+        <nav class="navbar navbar-light bg-light navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="{{ url_for('main.home') }}" class="navbar-item">
+                        Home
+                    </a>
+                    <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                        Profile
+                    </a>
+                    <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                        Login
+                    </a>
+                    <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                        Sign Up
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock content %}
+
+    <div class="container">
+        <hr>
+        <footer>
+            <p>&copy; IK 2021</p>
+        </footer>
+    </div>
+
+    <script src="{{url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>
