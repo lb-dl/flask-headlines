@@ -4,13 +4,11 @@ import configparser
 import datetime
 import feedparser
 import requests
-
+from flask_login import login_required, current_user
 
 from flask import make_response, render_template, request
 
 main = Blueprint('main', __name__)
-
-
 
 
 RSS_FEEDS = {'bbc': 'http://feeds.bbci.co.uk/news/rss.xml',
@@ -27,6 +25,7 @@ DEFAULTS = {'publication': 'bbc',
 WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid={}"
 CURRENCY_URL = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5"
 
+
 @main.route('/')
 def home():
     # get customized headlines, based on user input or default
@@ -40,8 +39,8 @@ def home():
     currency_to = get_value_with_fallback("currency_to")
     rate = get_rate(currency_to)
     response = make_response(render_template("home.html", articles=articles,
-                           weather=weather, currency_to=currency_to,
-                           currency_from=currency_from, rate=rate))
+                                             weather=weather, currency_to=currency_to,
+                                             currency_from=currency_from, rate=rate))
     expires = datetime.datetime.now() + datetime.timedelta(days=365)
     response.set_cookie("publication", publication, expires=expires)
     response.set_cookie("city", city, expires=expires)
@@ -73,7 +72,7 @@ def get_api_key():
 
 
 def get_weather(query):
-    api_key = api
+    api_key = get_api_key()
     url_api = WEATHER_URL.format(query, api_key)
     data = requests.get(url_api)
     parsed = data.json()
@@ -98,5 +97,6 @@ def get_rate(to):
 
 
 @main.route('/profile')
+@login_required
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', name=current_user.name)
