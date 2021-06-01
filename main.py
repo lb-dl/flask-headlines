@@ -1,5 +1,5 @@
 from flask import Blueprint
-from . import db
+from __init__ import db
 import configparser
 import datetime
 import feedparser
