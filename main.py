@@ -1,12 +1,15 @@
-from flask import Blueprint
-from __init__ import db
 import configparser
 import datetime
-import feedparser
-import requests
-from flask_login import login_required, current_user
 
-from flask import make_response, render_template, request
+import feedparser
+
+from flask import Blueprint, make_response, render_template, request
+
+from flask_login import current_user, login_required
+
+
+import requests
+
 
 main = Blueprint('main', __name__)
 

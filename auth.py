@@ -1,10 +1,13 @@
-from flask import Blueprint, flash, url_for, redirect, render_template, request
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from __init__ import db
+
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+
+from flask_login import login_required, login_user, logout_user
+
 from models import User
 
+from werkzeug.security import check_password_hash, generate_password_hash
 
-from __init__ import db
 
 auth = Blueprint('auth', __name__)
 
